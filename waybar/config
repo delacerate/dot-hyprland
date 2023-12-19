@@ -6,9 +6,9 @@
     "margin-bottom": 0,
     "margin-right": 10,
     "spacing": 5, // Gaps between modules (4px)
-    "modules-left": ["custom/launcher", "cpu", "memory", "hyprland/workspaces", "custom/weather", "custom/spotify"],
+    "modules-left": ["custom/launcher", "cpu", "memory", "hyprland/workspaces", "custom/weather", "network"],
     "modules-center": [],
-    "modules-right": ["tray", "backlight", "pulseaudio", "network", "battery", "clock", "custom/power-menu"],
+    "modules-right": ["tray", "backlight", "pulseaudio", "battery", "clock", "custom/power-menu"],
    // "hyprland/workspaces": {
    //   "format": "{icon}",
    //   "on-click": "activate",
