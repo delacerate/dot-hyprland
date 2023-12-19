@@ -11,34 +11,27 @@
 configuration {
 	modi:                       "drun,run,filebrowser,window";
     show-icons:                 true;
-    display-drun:               "";
-    display-run:                "";
-    display-filebrowser:        "";
-    display-window:             "";
+    display-drun:               "APPS";
+    display-run:                "RUN";
+    display-filebrowser:        "FILES";
+    display-window:             "WINDOW";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
 }
 
-@import                          "./colors.rasi"
-@import                          "./fonts.rasi"
-
 /*****----- Global Properties -----*****/
-/*
 * {
     font:                        "JetBrains Mono Nerd Font 10";
     background:                  #2E3440;
     background-alt:              #4C566A;
- foreground:                  #FFFFFF; 
-    foreground:                  #000000;
+    foreground:                  #FFFFFF;
     selected:                    #81A1C1;
     active:                      #5E81AC;
     urgent:                      #88C0D0;
     urgentsel:                   #000000;
 }
-*/
-/*****----- Main Window -----*****/
 
-/*
+/*****----- Main Window -----*****/
 window {
     /* properties for window widget */
     transparency:                "real";
@@ -55,63 +48,7 @@ window {
     cursor:                      "default";
     background-color:            @background;
 }
-*/
-* {
-    border-colour:               var(selected);
-    handle-colour:               var(selected);
-    background-colour:           var(background);
-    foreground-colour:           var(foreground);
-    alternate-background:        var(background-alt);
-    normal-background:           var(background);
-    normal-foreground:           var(foreground);
-    urgent-background:           var(urgent);
-    urgent-foreground:           var(background);
-    active-background:           var(active);
-    active-foreground:           var(background);
-    selected-normal-background:  var(selected);
-    selected-normal-foreground:  var(background);
-    selected-urgent-background:  var(active);
-    selected-urgent-foreground:  var(background);
-    selected-active-background:  var(urgent);
-    selected-active-foreground:  var(background);
-    alternate-normal-background: var(background);
-    alternate-normal-foreground: var(foreground);
-    alternate-urgent-background: var(urgent);
-    alternate-urgent-foreground: var(background);
-    alternate-active-background: var(active);
-    alternate-active-foreground: var(background);
-}
 
-/*****----- Main Window -----*****/
-window {
-    /* properties for window widget */
-    transparency:                "real";
-    location:                    center;
-    anchor:                      center;
-    fullscreen:                  false;
-    width:                       1000px;
-    x-offset:                    0px;
-    y-offset:                    0px;
-
-    /* properties for all widgets */
-    enabled:                     true;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      0px solid;
-    border-radius:               10px;
-    border-color:                @border-colour;
-    cursor:                      "default";
-    /* Backgroud Colors */
-    background-color:            @background-colour;
-    /* Backgroud Image */
-    //background-image:          url("/path/to/image.png", none);
-    /* Simple Linear Gradient */
-    //background-image:          linear-gradient(red, orange, pink, purple);
-    /* Directional Linear Gradient */
-    //background-image:          linear-gradient(to bottom, pink, yellow, magenta);
-    /* Angle Linear Gradient */
-    //background-image:          linear-gradient(45, cyan, purple, indigo);
-}
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
@@ -183,7 +120,7 @@ button {
 }
 button selected {
     background-color:            @selected;
-    text-color:                  @foreground;
+    text-color:                  @urgentsel;
 }
 
 /*****----- Listview -----*****/
@@ -229,7 +166,7 @@ element normal.active {
 }
 element selected.normal {
     background-color:            @selected;
-    text-color:                  @foreground;
+    text-color:                  @urgentsel;
 }
 element selected.urgent {
     background-color:            @urgent;
@@ -237,7 +174,7 @@ element selected.urgent {
 }
 element selected.active {
     background-color:            @urgent;
-    text-color:                  @foreground;
+    text-color:                  @urgentsel;
 }
 element-icon {
     background-color:            transparent;
