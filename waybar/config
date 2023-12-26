@@ -1,14 +1,15 @@
 {
     "height": 30, // Waybar height (to be removed for auto height)
     "layer": "top", // Waybar at top layer
+    "output": "eDP-1",
     "margin-top": 6,
     "margin-left": 10,
     "margin-bottom": 0,
     "margin-right": 10,
     "spacing": 5, // Gaps between modules (4px)
     "modules-left": ["custom/launcher", "cpu", "memory", "hyprland/workspaces", "custom/weather", "network"],
-    "modules-center": [],
-    "modules-right": ["tray", "backlight", "pulseaudio", "battery", "clock", "custom/power-menu"],
+    "modules-center": ["clock",],
+    "modules-right": ["tray", "backlight", "pulseaudio", "battery", "custom/spotify", "custom/power-menu",],
    // "hyprland/workspaces": {
    //   "format": "{icon}",
    //   "on-click": "activate",
@@ -42,17 +43,17 @@
     /* "all-outputs": true, */
     //"active-only": true,
     "format": "{icon}",
-    "format-icons": {
-      "1": "I",
-      "2": "II",
-      "3": "III",
-      "4": "VI",
-      "5": "V",
-      "6": "VI",
-      "7": "VII",
-      "8": "VIII",
-      "9": "IX",
-      "10": "X",
+    "format-icons": { 
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十",
       "urgent": "",
       "focused": "",
       "default": ""
@@ -74,13 +75,13 @@
 
     "cpu": {
       "interval": 10,
-      "format": "󰍛 {}%",
+      "format": "<span color='#FB958B'>󰍛</span> {}%",
       "max-length": 10,
       "on-click": "",
     },
     "memory": {
         "interval": 30,
-        "format": " {}%",
+        "format": "<span color='#EBCB8B'> </span> {}%",
         "format-alt":" {used:0.1f}G",
         "max-length": 10,
     },
@@ -88,7 +89,7 @@
         "device": "DP-1",
         "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": "",
+        /* "on-click": */
     },
    /* "network": {
         "format-wifi": "直 {signalStrength}%",
@@ -145,7 +146,7 @@
       "format-warning": "{icon} {capacity}%",
       "format-critical": "{icon} {capacity}%",
       "format-charging": "<span font-family='Font Awesome 6 Free'></span> {capacity}%",
-      "format-plugged": "  {capacity}%",
+      "format-plugged": "<span color='#26A65B'> </span>  {capacity}%",
       "format-alt": "{icon} {time}",
       "format-full": "  {capacity}%",
       "format-icons": [" ", " ", " ", " ", " "],

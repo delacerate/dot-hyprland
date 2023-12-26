@@ -1,6 +1,6 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: JetBrainsMono Nerd Font;
+  font-family: CodeNewRoman Nerd Font;
   font-size: 17px;
 }
 
@@ -10,7 +10,7 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   border-top: 8px transparent;
-  border-radius: 8px;
+  border-radius: 20px;
   transition-duration: 0.5s;
   margin: 16px 16px;
 }
@@ -35,7 +35,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  color: #6a92d7;
+  color: #FFFFFF;
 }
 
 #workspaces button.urgent {
@@ -93,12 +93,14 @@ window#waybar.hidden {
 }
 
 #cpu {
-  color: #fb958b;
+  /* color: #fb958b; */
+  color: #e5e5e5;
   background-color: #1f2530;
 }
 
 #memory {
-  color: #ebcb8b;
+  /* color: #ebcb8b; */
+  color: #e5e5e5;
   background-color: #1f2530;
 }
 
@@ -179,7 +181,8 @@ window#waybar.hidden {
 #battery.charging,
 #battery.full,
 #battery.plugged {
-  color: #26a65b;
+  /* color: #26a65b; */
+  color: #FFFFFF;
   /* background-color: #26a65b; */
 }
 
@@ -216,7 +219,9 @@ label:focus {
 }
 
 #network {
-  color: #b48ead;
+  /* color: #b48ead; */
+  color: #c8d2e0;
+  /* background-color: #14141e; */
 }
 
 #network.disconnected {
@@ -302,8 +307,8 @@ label:focus {
 #custom-spotify {
   padding: 0 10px;
   margin: 0 4px;
-  /* background-color: #1db954; */
-  color: #abb2bf;
+  background-color: #1db954;
+  color: #000000;
 }
 
 #keyboard-state > label.locked {
