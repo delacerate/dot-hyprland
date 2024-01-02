@@ -3,13 +3,16 @@
     "layer": "top", // Waybar at top layer
     "output": "eDP-1",
     "margin-top": 6,
-    "margin-left": 10,
+    "margin-left": 8,
     "margin-bottom": 0,
-    "margin-right": 10,
+    "margin-right": 8,
+    "ipc": true,
+    "exclusive": true,
+    //"mode": "dock",
     "spacing": 5, // Gaps between modules (4px)
-    "modules-left": ["custom/launcher", "cpu", "memory", "hyprland/workspaces", "custom/weather", "network"],
+    "modules-left": ["custom/launcher", "hyprland/workspaces",  "cpu", "memory","temperature", "custom/weather",],
     "modules-center": ["clock",],
-    "modules-right": ["tray", "backlight", "pulseaudio", "battery", "custom/spotify", "custom/power-menu",],
+    "modules-right": ["tray", "network","custom/spotify", "pulseaudio#microphone", "backlight", "pulseaudio", "battery", "custom/power-menu",],
    // "hyprland/workspaces": {
    //   "format": "{icon}",
    //   "on-click": "activate",
@@ -68,29 +71,71 @@
         "spacing": 10
     },
      "clock": {
-        "format": "<span color='#bf616a'> </span>{:%A, %d %b %g | %I:%M %p}",
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-    },
-  
+        "format": "<span color='#5e81ac'> </span>{:%A, %d %b %g | %I:%M %p}",
+        //"tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+      "mode"          : "year",
+      "mode-mon-col"  : 2,
+      "weeks-pos"     : "left",
+      "on-scroll"     : 2,
+      "on-click-right": "mode",
+      "format": {
+      "months":     "<span color='#ffead3'><b>{}</b></span>",
+      "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+      "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+      "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+      "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                },
+      },
 
+    },
+    //"cpu": {
+    //  "interval": 10,
+    //  "format": "<span color='#FB958B'>󰍛</span> {}%",
+    //  "max-length": 10,
+    //  "on-click": "",
+    //},
     "cpu": {
-      "interval": 10,
-      "format": "<span color='#FB958B'>󰍛</span> {}%",
-      "max-length": 10,
-      "on-click": "",
-    },
+    "format-alt": "<span color='#5e81ac'>󰍛</span> {}%",
+    "interval": 1,
+    "format-alt-click": "click",
+    "format": "<span color='#5e81ac'>{icon0}{icon1}{icon2}{icon3}</span> {usage:>2}% ",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+  },
+    //"memory": {
+    //    "interval": 30,
+    //    "format": "<span color='#EBCB8B'> </span> {}%",
+    //    "format-alt":" {used:0.1f}G",
+    //    "max-length": 10,
+    //},
     "memory": {
-        "interval": 30,
-        "format": "<span color='#EBCB8B'> </span> {}%",
-        "format-alt":" {used:0.1f}G",
-        "max-length": 10,
-    },
+    "interval": 10,
+    "format": "<span color='#5e81ac'></span> {used:0.1f}G",
+    "on-click-right": "kitty --title btop sh -c 'btop'"
+  },
+
+    //"backlight": {
+    //    "device": "DP-1",
+    //    "format": "{icon} {percent}%",
+    //   "format-icons": ["", "", "", "", "", "", "", "", ""],
+    //    /* "on-click": */
+    // },
     "backlight": {
-        "device": "DP-1",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        /* "on-click": */
-    },
+    "interval": 2,
+    "align": 0,
+    "rotate": 0,
+    "format": "<span color='#5e81ac'>{icon}</span> {percent}",
+    //"format-icons": ["󰃞", "󰃟", "󰃠"],
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-click": "",
+    "on-click-middle": "",
+    "on-click-right": "",
+    "on-update": "",
+    "on-scroll-up": "~/.config/hypr/scripts/brightness-new.sh --inc",
+    "on-scroll-down": "~/.config/hypr/scripts/brightness-new.sh --dec",
+    "smooth-scrolling-threshold": 1,
+  },
    /* "network": {
         "format-wifi": "直 {signalStrength}%",
         "format-ethernet": " wired",
@@ -98,35 +143,84 @@
         "on-click": "bash ~/.config/waybar/scripts/rofi-wifi-menu.sh",
         "format-disconnected": "Disconnected  ",
     },*/  
+    "temperature": {
+    "interval": 10,
+    "tooltip": false,
+    //"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "thermal-zone": 0,
+    "critical-threshold": 82,
+    "format-critical": " {icon} {temperatureC}°C",
+    "format": "<span color='#5e81ac'>{icon}</span>{temperatureC}°C",
+    "format-icons": [" "],
+    "on-click-right": "kitty --title btop sh -c 'btop'"
+  },
   "network": {
-    "format-wifi": "  {bandwidthDownBits}",
-    "format-ethernet": " {bandwidthDownBits}",
-    "format-disconnected": "",
+    "format-wifi": "<span color='#5e81ac'>  </span> {bandwidthDownBytes} <span color='#5e81ac'> </span> {bandwidthUpBytes}",
+    "format-ethernet": "<span color='#5e81ac'> </span>{bandwidthDownBytes} <span color='#5e81ac'>󰅧 </span> {bandwidthUpBytes}",
+    "format-disconnected": " 󰞃 ",
+    "interval": 1,
     "format-linked": "",
     "tooltip-format": "{ipaddr}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)   \n{ipaddr} | {frequency} MHz{icon\n {bandwidthDownBits}  {bandwidthUpBits} ",
-    "tooltip-format-ethernet": "{ifname}  \n{ipaddr} | {frequency} MHz{icon} \n {bandwidthDownBits}  {bandwidthUpBits} ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)   \n{ipaddr} | {frequency} MHz {icon} \n  {bandwidthDownBytes}  {bandwidthUpBytes}  ",
+    "tooltip-format-ethernet": "{ifname}  \n{ipaddr} | {frequency} MHz{icon} \n {bandwidthDownBytes}  {bandwidthUpBytes} ",
     "tooltip-format-disconnected": "Not Connected",
     "on-click": "bash ~/.config/waybar/scripts/rofi-wifi-menu.sh",
     //"on-click": "pgrep -x rofi &>/dev/null && notify-send rofi || networkmanager_dmenu"
-  },
-
+  }, 
+  /* "network": {
+    "interface": "wlp4s0",
+    "interval": 1,
+    "format": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "format-disconnected": " 󰞃 ",
+    "tooltip": false
+  }, */
+    //"pulseaudio": {
+    //    "format": "{icon} {volume}%",
+    //    "format-bluetooth": "  {volume}%",
+    //    "format-bluetooth-muted": " ",
+    //    "format-muted": " ",
+    //    "format-icons": {
+    //        "headphone": "",
+    //        "hands-free": "",
+    //        "headset": "",
+    //        "phone": "",
+    //        "portable": "",
+    //        "car": "",
+    //        "default": ["", "", ""]
+    //    },
+    //    "on-click": "pavucontrol"
+    //},
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "  {volume}%",
-        "format-bluetooth-muted": " ",
-        "format-muted": " ",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
+    "format": "<span color='#5e81ac'>{icon}</span> {volume} %",
+    "format-bluetooth": "<span color='#5e81ac'> {icon}</span> {volume} %",
+    "format-muted": "</span> mute",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+    "default": ["", "", ""],
+    "ignored-sinks": ["Easy Effects Sink"],
+  },
+    "scroll-step": 5.0,
+    "on-click": "~/.config/hypr/scripts/volume --toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "~/.config/hypr/scripts/volume --inc",
+    "on-scroll-down": "~/.config/hypr/scripts/volume --dec",
+    "smooth-scrolling-threshold": 1,
+  },
+    "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "<span color='#5e81ac'></span> {volume} %",
+    "format-source-muted": "<span color='#5e81ac'>  </span> muted",
+    "on-click": "~/.config/hypr/scripts/volume --toggle-mic",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "~/.config/hypr/scripts/volume --mic-inc",
+    "on-scroll-down": "~/.config/hypr/scripts/volume --mic-dec",
+    "scroll-step": 5,
+  },
 
     "bluetooth": {
         "on-click": "~/.config/waybar/scripts/rofi-bluetooth &",
@@ -142,26 +236,35 @@
           "critical": 15
       },
       "max-length": 20,
-      "format": "{icon} {capacity}%",
+      "format": "<span color='#5e81ac'>{icon}</span> {capacity}%",
       "format-warning": "{icon} {capacity}%",
       "format-critical": "{icon} {capacity}%",
-      "format-charging": "<span font-family='Font Awesome 6 Free'></span> {capacity}%",
+      "format-charging": "<span color='#26A65B' font-family='Font Awesome 6 Free'></span> {capacity}%",
       "format-plugged": "<span color='#26A65B'> </span>  {capacity}%",
       "format-alt": "{icon} {time}",
-      "format-full": "  {capacity}%",
+      "format-full": "<span color='#26A65B'> </span> {capacity}%",
       "format-icons": [" ", " ", " ", " ", " "],
     },
-    "custom/weather": {
-      "exec": "python3 ~/.config/waybar/scripts/weather.py",
-      "restart-interval": 300,
-      "return-type": "json",
-      "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/a319796a4173829988d68c4e3a5f90c1b6832667ea7aaa201757a1c887ec667a"
-    },   
-
+   // "custom/weather": {
+   //   "exec": "python3 ~/.config/waybar/scripts/weather.py",
+   //   "restart-interval": 300,
+   //   "return-type": "json",
+   //   "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/a319796a4173829988d68c4e3a5f90c1b6832667ea7aaa201757a1c887ec667a"
+   // },   
+      "custom/weather": {
+        "format": "{}",
+        "format-alt": "{alt}: {}",
+        "format-alt-click": "click",
+        "interval": 3600,
+        "return-type": "json",
+        "exec": "~/.config/hypr/scripts/weather.sh",
+        "exec-if": "ping wttr.in -c1"
+  },
    "custom/spotify": {
     "exec": "python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
-    "format": "{}  ",
+    "format": " {}",
     "return-type": "json",
+    "max-length": 30,
     "on-click": "playerctl play-pause",
     "on-double-click-right": "playerctl next",
     "on-scroll-down": "playerctl previous",

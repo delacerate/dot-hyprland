@@ -160,21 +160,21 @@ window#waybar.hidden {
 }
 
 #pulseaudio {
-  color: #7d9bba;
+  color: #e5e5e5;
 }
 
 #backlight {
   /* color: #EBCB8B; */
-  color: #8fbcbb;
+  color: #e5e5e5;
 }
 
 #clock {
-  color: #c8d2e0;
+  color: #e5e5e5;
   /* background-color: #14141e; */
 }
 
 #battery {
-  color: #c0caf5;
+  color: #e5e5e5;
   /* background-color: #90b1b1; */
 }
 
@@ -182,7 +182,7 @@ window#waybar.hidden {
 #battery.full,
 #battery.plugged {
   /* color: #26a65b; */
-  color: #FFFFFF;
+  color: #e5e5e5;
   /* background-color: #26a65b; */
 }
 
@@ -220,7 +220,7 @@ label:focus {
 
 #network {
   /* color: #b48ead; */
-  color: #c8d2e0;
+  color: #e5e5e5;
   /* background-color: #14141e; */
 }
 
@@ -243,10 +243,11 @@ label:focus {
 }
 
 #temperature {
-  background-color: #f0932b;
+  color: #e5e5e5;
 }
 
 #temperature.critical {
+  color: #e5e5e5;
   background-color: #eb4d4b;
 }
 
