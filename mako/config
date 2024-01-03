@@ -7,10 +7,10 @@ on-button-left=dismiss
 on-button-middle=none
 on-button-right=dismiss-all
 on-touch=dismiss
-#on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
 
 # STYLE OPTIONS
-font="JetBrainsMono Nerd Font", 13
+font="JetBrains Mono Nerd Font", 13
 width=350
 height=150
 margin=10
