@@ -2,6 +2,7 @@
     "height": 30, // Waybar height (to be removed for auto height)
     "layer": "top", // Waybar at top layer
     "output": "eDP-1",
+    "gtk-layer-shell": true,
     "margin-top": 6,
     "margin-left": 8,
     "margin-bottom": 0,
@@ -10,7 +11,7 @@
     "exclusive": true,
     //"mode": "dock",
     "spacing": 5, // Gaps between modules (4px)
-    "modules-left": ["custom/launcher", "hyprland/workspaces",  "cpu", "memory","temperature", "custom/weather",],
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/padd", "custom/l_end" "cpu", "memory","temperature", "custom/weather","custom/r_end"],
     "modules-center": ["clock",],
     "modules-right": ["network", "tray", "custom/spotify", "pulseaudio#microphone", "backlight", "pulseaudio", "battery", "custom/power-menu",],
    // "hyprland/workspaces": {
@@ -277,5 +278,51 @@
         "format": " <span color='#6a92d7'>󰣇 </span>",
         "on-click": "rofi -show drun",
     },
+    
+// modules for padding //
+
+    "custom/l_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/r_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/sl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/sr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/rl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/rr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/padd": {
+        "format": "  ",
+        "interval" : "once",
+        "tooltip": false
+    }
+
+
 }
 
